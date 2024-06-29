@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Container, TextField, Button, Typography, Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
@@ -8,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(null);
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const Login = () => {
       const response = await axios.post("http://127.0.0.1:5000/api/login", { email, password });
       login(response.data);
       setAlert({ type: "success", message: "Login successful!" });
+      navigate("/profile");
     } catch (error) {
       setAlert({ type: "error", message: "Login failed. Please check your credentials." });
     }

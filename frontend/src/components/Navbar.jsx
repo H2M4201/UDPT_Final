@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -17,10 +17,13 @@ const Navbar = () => {
         </Button>
         {auth.isAuthenticated ? (
           <>
+            <Button color="inherit" component={Link} to="/profile">
+              Profile
+            </Button>
             <Button color="inherit" onClick={logout}>
               Logout
             </Button>
-            <Typography variant="body1" component="div">
+            <Typography variant="body1" component="div" sx={{ marginLeft: 2 }}>
               {auth.user.email}
             </Typography>
           </>
