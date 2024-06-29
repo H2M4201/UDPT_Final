@@ -39,6 +39,17 @@ class Paper(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('USERS.user_id'), nullable=False)
     participations = db.relationship('Participation', backref='paper', lazy=True)
 
+    def to_dict(self):
+        return {
+            'paper_id': self.paper_id,
+            'title': self.title,
+            'author_string_list': self.author_string_list,
+            'abstract': self.abstract,
+            'conference_id': self.conference_id,
+            'topic_id': self.topic_id,
+            'user_id': self.user_id
+        }
+
 class Participation(db.Model):
     __tablename__ = 'PARTICIPATION'
     author_id = db.Column(db.Integer, db.ForeignKey('AUTHORS.user_id'), primary_key=True)

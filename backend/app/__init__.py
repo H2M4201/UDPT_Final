@@ -10,7 +10,7 @@ def create_app():
     app.config.from_object('app.config.Config')
     db.init_app(app)
     migrate = Migrate(app, db)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, resources={r"/*": {"origins": "*"}})
     
     with app.app_context():
         from .views import register_views
