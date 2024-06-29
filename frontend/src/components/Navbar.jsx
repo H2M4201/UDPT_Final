@@ -15,6 +15,9 @@ const Navbar = () => {
         <Button color="inherit" component={Link} to="/">
           Home
         </Button>
+        <Button color="inherit" component={Link} to="/search">
+          Search
+        </Button>
         {auth.isAuthenticated ? (
           <>
             <Button color="inherit" component={Link} to="/profile">

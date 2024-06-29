@@ -8,8 +8,8 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     status = db.Column(db.String(10), nullable=False)
     user_type = db.Column(db.String(10), nullable=False)
-    authors = db.relationship('Author', backref='user', lazy=True)
     papers = db.relationship('Paper', backref='user', lazy=True)
+    author = db.relationship('Author', back_populates='user', uselist=False, lazy=True)
 
     def to_dict(self):
         return {
@@ -27,6 +27,8 @@ class Author(db.Model):
     website = db.Column(db.String(255))
     profile_json_text = db.Column(db.Text)
     image_path = db.Column(db.String(255))
+    user = db.relationship('User', back_populates='author')
+    participations = db.relationship('Participation', backref='author', lazy=True)
 
 class Paper(db.Model):
     __tablename__ = 'PAPERS'

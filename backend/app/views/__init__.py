@@ -7,6 +7,7 @@ def register_views(app):
     api.route('/users', methods=['GET'])(user_controller.get_users)
     api.route('/papers', methods=['GET'])(paper_controller.get_papers)
     api.route('/latest_papers', methods=['GET'])(paper_controller.get_latest_papers_by_topic)
+    api.route('/search_papers', methods=['GET'])(paper_controller.search_papers)
     api.route('/login', methods=['POST'])(auth_controller.login)
     api.route('/register', methods=['POST'])(auth_controller.register)
     
