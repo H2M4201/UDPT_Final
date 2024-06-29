@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import AuthorProfile from "./pages/AuthorProfile";
 import { AuthProvider } from "./context/AuthContext";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/author/:authorId" element={<AuthorProfile />} />
         </Routes>
       </Router>
     </AuthProvider>
