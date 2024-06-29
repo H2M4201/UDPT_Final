@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Typography, Card, CardContent, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
   const [papers, setPapers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPapers = async () => {
@@ -31,7 +33,7 @@ const Home = () => {
           <Grid container spacing={2}>
             {topic.papers.map((paper) => (
               <Grid item xs={12} sm={6} md={4} key={paper.paper_id}>
-                <Card>
+                <Card onClick={() => navigate(`/paper/${paper.paper_id}`)} style={{ cursor: "pointer" }}>
                   <CardContent>
                     <Typography variant="h6" component="h3">
                       {paper.title}

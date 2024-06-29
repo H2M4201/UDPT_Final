@@ -53,3 +53,20 @@ def search_papers():
 
     papers = query.all()
     return jsonify([paper.to_dict() for paper in papers])
+
+def get_paper_details(paper_id):
+    paper = Paper.query.get(paper_id)
+    if not paper:
+        return jsonify({'error': 'Paper not found'}), 404
+
+    participations = (db.session.query(Participation)
+                      .join(Author, Participation.author_id == Author.user_id)
+                      .filter(Participation.paper_id == paper_id)
+                      .all())
+
+    participants = [{'author_id': p.author_id, 'full_name': p.author.full_name, 'role': p.role} for p in participations]
+
+    paper_details = paper.to_dict()
+    paper_details['participants'] = participants
+
+    return jsonify(paper_details)

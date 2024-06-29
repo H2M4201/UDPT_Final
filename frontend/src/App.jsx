@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import AuthorProfile from "./pages/AuthorProfile";
+import PaperDetails from "./pages/PaperDetails";
 import { AuthProvider } from "./context/AuthContext";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<Search />} />
           <Route path="/author/:authorId" element={<AuthorProfile />} />
+          <Route path="/paper/:paperId" element={<PaperDetails />} />
         </Routes>
       </Router>
     </AuthProvider>

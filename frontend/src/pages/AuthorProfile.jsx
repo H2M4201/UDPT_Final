@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Container, Typography, Card, CardContent, Grid } from "@mui/material";
 import axios from "axios";
 
 const AuthorProfile = () => {
   const { authorId } = useParams();
   const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -54,7 +55,7 @@ const AuthorProfile = () => {
       <Grid container spacing={2} marginTop={2}>
         {papers.map((paper) => (
           <Grid item xs={12} sm={6} md={4} key={paper.paper_id}>
-            <Card>
+            <Card onClick={() => navigate(`/paper/${paper.paper_id}`)} style={{ cursor: "pointer" }}>
               <CardContent>
                 <Typography variant="h6" component="h3">
                   {paper.title}
